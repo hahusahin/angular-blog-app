@@ -31,10 +31,57 @@ export const registerEffect = createEffect(
   { functional: true }
 );
 
+export const loginEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    authService = inject(AuthService),
+    persService = inject(PersistanceService)
+  ) =>
+    actions$.pipe(
+      ofType(authActions.login),
+      switchMap(({ request }) =>
+        authService.login(request).pipe(
+          map((currentUser) => {
+            persService.set('accessToken', currentUser.token);
+            return authActions.loginSuccess({ currentUser });
+          }),
+          catchError((errorRes: HttpErrorResponse) =>
+            of(authActions.loginFailure({ errors: errorRes.error.errors }))
+          )
+        )
+      )
+    ),
+  { functional: true }
+);
+
+export const getCurrentUserEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    authService = inject(AuthService),
+    persService = inject(PersistanceService)
+  ) => {
+    return actions$.pipe(
+      ofType(authActions.currentUser),
+      switchMap(() => {
+        const token = persService.get('accessToken');
+        return !token
+          ? of(authActions.currentUserFailure())
+          : authService.getCurrentUser().pipe(
+              map((currentUser) => {
+                return authActions.currentUserSuccess({ currentUser });
+              }),
+              catchError(() => of(authActions.currentUserFailure()))
+            );
+      })
+    );
+  },
+  { functional: true }
+);
+
 export const redirectAfterRegisterEffect = createEffect(
   (actions$ = inject(Actions), router = inject(Router)) =>
     actions$.pipe(
-      ofType(authActions.registerSuccess),
+      ofType(authActions.registerSuccess, authActions.loginSuccess),
       tap(() => router.navigateByUrl('/'))
     ),
   {

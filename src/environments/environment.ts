@@ -1,3 +1,3 @@
 export const environment = {
-  apiBaseUrl: 'https://api.realworld.how/api',
+  API_BASE_URL: 'https://api.realworld.how/api',
 };
