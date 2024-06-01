@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BackendErrorsInterface } from '../../types/backend-errors.interface';
 import { CommonModule } from '@angular/common';
+import { BackendErrorsInterface } from '../../types';
 
 @Component({
   standalone: true,

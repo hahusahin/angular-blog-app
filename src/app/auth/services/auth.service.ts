@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { CurrentUserInterface } from '../../shared/types/current-user.interface';
 import { environment } from '../../../environments/environment';
 import {
   AuthResponseInterface,
   LoginRequestInterface,
   RegisterRequestInterface,
 } from '../types';
+import { CurrentUserInterface } from '../../shared/types';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

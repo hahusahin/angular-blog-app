@@ -13,8 +13,6 @@ export const appRoutes: Route[] = [
   {
     path: '',
     loadChildren: () =>
-      import('./global-feed/global-feed.routes').then(
-        (m) => m.globalFeedRoutes
-      ),
+      import('./home/home.routes').then((m) => m.globalFeedRoutes),
   },
 ];

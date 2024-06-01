@@ -1,5 +1,4 @@
-import { BackendErrorsInterface } from '../shared/types/backend-errors.interface';
-import { CurrentUserInterface } from '../shared/types/current-user.interface';
+import { BackendErrorsInterface, CurrentUserInterface } from '../shared/types';
 
 export interface AuthResponseInterface {
   user: CurrentUserInterface;

@@ -1,5 +1,5 @@
 <ng-container *ngIf="data$ | async as data">
-    <mc-template [errorMessage]="data.error" [isLoading]="data.isLoading">
+    <mc-status-wrapper [errorMessage]="data.error" [isLoading]="data.isLoading">
         <div *ngIf="data.feed">
             <div class="article-preview" *ngFor="let article of data.feed.articles">
                 <div class="article-meta">
@@ -26,5 +26,5 @@
                 </a>
             </div>
         </div>
-    </mc-template>
+    </mc-status-wrapper>
 </ng-container>

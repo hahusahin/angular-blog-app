@@ -1,3 +1,7 @@
+export interface BackendErrorsInterface {
+  [key: string]: string[];
+}
+
 export interface CurrentUserInterface {
   email: string;
   username: string;

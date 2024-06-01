@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'mc-template',
+  selector: 'mc-status-wrapper',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './template.component.html',
-  styleUrl: './template.component.css',
+  templateUrl: './status-wrapper.component.html',
+  styleUrl: './status-wrapper.component.css',
 })
-export class TemplateComponent {
+export class StatusWrapperComponent {
   @Input() errorMessage: string | null = 'Something Went Wrong';
   @Input() isLoading = false;
 }

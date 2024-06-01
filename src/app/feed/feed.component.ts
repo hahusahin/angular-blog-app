@@ -5,12 +5,12 @@ import { combineLatest } from 'rxjs';
 import { selectError, selectFeedData, selectIsLoading } from './store/reducers';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { TemplateComponent } from '../template/template.component';
+import { StatusWrapperComponent } from '../shared/components/status-wrapper/status-wrapper.component';
 
 @Component({
   selector: 'mc-feed',
   standalone: true,
-  imports: [CommonModule, RouterLink, TemplateComponent],
+  imports: [CommonModule, RouterLink, StatusWrapperComponent],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.css',
 })
