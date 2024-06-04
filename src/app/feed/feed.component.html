@@ -25,6 +25,12 @@
                   </ul>
                 </a>
             </div>
+            <mc-pagination 
+              [limit]="limit" 
+              [totalCount]="data.feed.articlesCount" 
+              [url]="baseUrl" 
+              [currentPage]="currentPage">
+            </mc-pagination>
         </div>
     </mc-status-wrapper>
 </ng-container>

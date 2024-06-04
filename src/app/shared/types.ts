@@ -9,3 +9,5 @@ export interface CurrentUserInterface {
   token: string;
   image: string | null;
 }
+
+export type FeedTabs = 'global' | 'feed' | 'popularTag';

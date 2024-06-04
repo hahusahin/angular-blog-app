@@ -6,11 +6,16 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authFeatureKey, authReducer } from './auth/store/reducers';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
-import * as authEffects from './auth/store/effects';
-import * as feedEffects from './feed/store/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { AuthInterceptor } from './shared/services/auth-interceptor';
 import { FeedFeatureKey, feedReducer } from './feed/store/reducers';
+import * as authEffects from './auth/store/effects';
+import * as feedEffects from './feed/store/effects';
+import * as tagsEffects from './popular-tags/store/effects';
+import {
+  PopularTagsFeatureKey,
+  popularTagsReducer,
+} from './popular-tags/store/reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,7 +27,8 @@ export const appConfig: ApplicationConfig = {
     provideRouterStore(),
     provideState(authFeatureKey, authReducer),
     provideState(FeedFeatureKey, feedReducer),
-    provideEffects(authEffects, feedEffects),
+    provideState(PopularTagsFeatureKey, popularTagsReducer),
+    provideEffects(authEffects, feedEffects, tagsEffects),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
