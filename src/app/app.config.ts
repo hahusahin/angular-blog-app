@@ -12,10 +12,12 @@ import { FeedFeatureKey, feedReducer } from './feed/store/reducers';
 import * as authEffects from './auth/store/effects';
 import * as feedEffects from './feed/store/effects';
 import * as tagsEffects from './popular-tags/store/effects';
+import * as articleEffects from './article/store/effects';
 import {
   PopularTagsFeatureKey,
   popularTagsReducer,
 } from './popular-tags/store/reducer';
+import { ArticleFeatureKey, articleReducer } from './article/store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,7 +30,8 @@ export const appConfig: ApplicationConfig = {
     provideState(authFeatureKey, authReducer),
     provideState(FeedFeatureKey, feedReducer),
     provideState(PopularTagsFeatureKey, popularTagsReducer),
-    provideEffects(authEffects, feedEffects, tagsEffects),
+    provideState(ArticleFeatureKey, articleReducer),
+    provideEffects(authEffects, feedEffects, tagsEffects, articleEffects),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),

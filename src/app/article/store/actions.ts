@@ -1,0 +1,15 @@
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { ArticleResponse } from '../types';
+
+export const articleActions = createActionGroup({
+  source: 'Article',
+  events: {
+    'Get Article': props<{ slug: string }>(),
+    'Get Article Success': props<ArticleResponse>(),
+    'Get Article Failure': emptyProps(),
+
+    'Delete Article': props<{ slug: string }>(),
+    'Delete Article Success': emptyProps(),
+    'Delete Article Failure': emptyProps(),
+  },
+});

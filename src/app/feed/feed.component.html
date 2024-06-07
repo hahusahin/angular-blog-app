@@ -8,13 +8,13 @@
                   </a>
                   <div class="info">
                     <a [routerLink]="['/profiles/', article.author.username]" class="author">{{article.author.username}}</a>
-                    <span class="date">{{article.createdAt}}</span>
+                    <span class="date">{{article.createdAt | date: 'mediumDate'}}</span>
                   </div>
                   <button class="btn btn-outline-primary btn-sm pull-xs-right">
                     <i class="ion-heart"></i> {{article.favoritesCount}}
                   </button>
                 </div>
-                <a [routerLink]="['/articles', article.slug]" class="preview-link">
+                <a [routerLink]="['/article', article.slug]" class="preview-link">
                   <h1>{{article.title}}</h1>
                   <p>{{article.description}}</p>
                   <span>Read more...</span>
