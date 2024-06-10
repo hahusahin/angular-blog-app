@@ -1,7 +1,7 @@
 # Blog App devloped using Angular Framework
 
-This is a blog app like Medium that I developed using Angular framework.
-For the backend: Special thanks to the https://realworld-docs.netlify.app/
+- This is a blog app like Medium that I developed using Angular framework.
+- For the backend: Special thanks to the https://realworld-docs.netlify.app/
 
 ## Features
 - Authentication
