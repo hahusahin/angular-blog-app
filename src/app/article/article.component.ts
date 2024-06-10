@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest, filter, map } from 'rxjs';
+import { Subscription, combineLatest, filter, map, take, tap } from 'rxjs';
 import {
   selectArticleData,
   selectError,
@@ -11,6 +11,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StatusWrapperComponent } from '../shared/components/status-wrapper/status-wrapper.component';
 import { selectCurrentUser } from '../auth/store/reducers';
+import { ArticleService } from './article.service';
 
 @Component({
   selector: 'mc-article',
@@ -19,8 +20,12 @@ import { selectCurrentUser } from '../auth/store/reducers';
   templateUrl: './article.component.html',
   styleUrl: './article.component.css',
 })
-export class ArticleComponent implements OnInit {
-  constructor(private store: Store, private route: ActivatedRoute) {}
+export class ArticleComponent implements OnInit, OnDestroy {
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute,
+    private articleService: ArticleService
+  ) {}
 
   slug = this.route.snapshot.paramMap.get('slug') ?? '';
 
@@ -40,11 +45,36 @@ export class ArticleComponent implements OnInit {
     isAuthor: this.isAuthor$,
   });
 
+  isFollowing: boolean = false;
+  private subscriptions: Subscription = new Subscription();
+
   ngOnInit(): void {
     this.store.dispatch(articleActions.getArticle({ slug: this.slug }));
+    this.subscriptions.add(
+      this.store
+        .select(selectArticleData)
+        .subscribe((data) => (this.isFollowing = !!data?.author.following))
+    );
   }
 
   onArticleDelete() {
     this.store.dispatch(articleActions.deleteArticle({ slug: this.slug }));
+  }
+
+  handleFollow(following: boolean, authorName: string) {
+    if (following) {
+      this.subscriptions.add(
+        this.articleService.unFollowAuthor(authorName).subscribe()
+      );
+    } else {
+      this.subscriptions.add(
+        this.articleService.followAuthor(authorName).subscribe()
+      );
+    }
+    this.isFollowing = !this.isFollowing;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

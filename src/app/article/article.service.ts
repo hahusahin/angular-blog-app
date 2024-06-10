@@ -17,4 +17,17 @@ export class ArticleService {
   deleteArticle(slug: string) {
     return this.http.delete(`${environment.API_BASE_URL}/articles/${slug}`);
   }
+
+  followAuthor(username: string) {
+    return this.http.post(
+      `${environment.API_BASE_URL}/profiles/${username}/follow`,
+      {}
+    );
+  }
+
+  unFollowAuthor(username: string) {
+    return this.http.delete(
+      `${environment.API_BASE_URL}/profiles/${username}/follow`
+    );
+  }
 }
