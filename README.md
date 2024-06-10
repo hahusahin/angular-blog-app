@@ -1,9 +1,14 @@
-# MediumClone
+# Blog App devloped using Angular Framework
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+This is a blog app like Medium that I developed using Angular framework.
+For the backend: Special thanks to the https://realworld-docs.netlify.app/
 
 ## Features
 - Authentication
+- Create / Edit / Delete your own articles
+- Follow / unfollow mechanism to customize your feed
+- Liking mechanism (Add to / Remove from favorites)
+- Listing article depending on favorite tags
 
 ## Techstack
 - Angular 17+
