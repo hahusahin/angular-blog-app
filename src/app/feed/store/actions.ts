@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { FeedResponse } from '../types';
+import { ArticleEntity, FeedResponse } from '../types';
 
 export const feedActions = createActionGroup({
   source: 'Feed',
@@ -7,5 +7,9 @@ export const feedActions = createActionGroup({
     'Get Feed': props<{ url: string }>(),
     'Get Feed Success': props<{ feed: FeedResponse }>(),
     'Get Feed Failure': emptyProps(),
+
+    'Handle Favorites': props<{ slug: string; isFavorited: boolean }>(),
+    'Handle Favorites Success': props<{ article: ArticleEntity }>(),
+    'Handle Favorites Failure': emptyProps(),
   },
 });

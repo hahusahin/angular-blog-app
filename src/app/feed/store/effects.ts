@@ -18,3 +18,21 @@ export const getFeedEffect = createEffect(
   },
   { functional: true }
 );
+
+export const favoritesEffect = createEffect(
+  (actions$ = inject(Actions), feedService = inject(FeedService)) => {
+    return actions$.pipe(
+      ofType(feedActions.handleFavorites),
+      switchMap(({ slug, isFavorited }) => {
+        const article$ = isFavorited
+          ? feedService.removeFromFavorite(slug)
+          : feedService.addToFavorites(slug);
+        return article$.pipe(
+          map((article) => feedActions.handleFavoritesSuccess({ article })),
+          catchError(() => of(feedActions.handleFavoritesFailure()))
+        );
+      })
+    );
+  },
+  { functional: true }
+);

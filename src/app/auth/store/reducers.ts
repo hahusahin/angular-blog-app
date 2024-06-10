@@ -14,36 +14,36 @@ const authFeature = createFeature({
   name: 'auth',
   reducer: createReducer(
     initialState,
-    on(authActions.register, (state) => ({
-      ...state,
-      isSubmitting: true,
-      validationErrors: null,
-    })),
-    on(authActions.registerSuccess, (state, action) => ({
-      ...state,
-      isSubmitting: false,
-      currentUser: action.currentUser,
-    })),
-    on(authActions.registerFailure, (state, action) => ({
-      ...state,
-      isSubmitting: false,
-      validationErrors: action.errors,
-    })),
-    on(authActions.login, (state) => ({
-      ...state,
-      isSubmitting: true,
-      validationErrors: null,
-    })),
-    on(authActions.loginSuccess, (state, action) => ({
-      ...state,
-      isSubmitting: false,
-      currentUser: action.currentUser,
-    })),
-    on(authActions.loginFailure, (state, action) => ({
-      ...state,
-      isSubmitting: false,
-      validationErrors: action.errors,
-    })),
+    on(
+      authActions.register,
+      authActions.login,
+      authActions.updateUser,
+      (state) => ({
+        ...state,
+        isSubmitting: true,
+        validationErrors: null,
+      })
+    ),
+    on(
+      authActions.registerSuccess,
+      authActions.loginSuccess,
+      authActions.updateUserSuccess,
+      (state, action) => ({
+        ...state,
+        isSubmitting: false,
+        currentUser: action.currentUser,
+      })
+    ),
+    on(
+      authActions.registerFailure,
+      authActions.loginFailure,
+      authActions.updateUserFailure,
+      (state, action) => ({
+        ...state,
+        isSubmitting: false,
+        validationErrors: action.errors,
+      })
+    ),
     on(authActions.currentUser, (state) => ({
       ...state,
       isLoading: true,
@@ -56,6 +56,10 @@ const authFeature = createFeature({
     on(authActions.currentUserFailure, (state) => ({
       ...state,
       isLoading: false,
+      currentUser: null,
+    })),
+    on(authActions.logout, () => ({
+      ...initialState,
       currentUser: null,
     })),
     on(routerNavigationAction, (state) => ({

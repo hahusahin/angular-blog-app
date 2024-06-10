@@ -1,5 +1,9 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { LoginRequestInterface, RegisterRequestInterface } from '../types';
+import {
+  LoginRequestInterface,
+  RegisterRequestInterface,
+  UpdateUserRequest,
+} from '../types';
 import {
   BackendErrorsInterface,
   CurrentUserInterface,
@@ -19,5 +23,11 @@ export const authActions = createActionGroup({
     'Current User': emptyProps(),
     'Current User Success': props<{ currentUser: CurrentUserInterface }>(),
     'Current User Failure': emptyProps(),
+
+    'Update User': props<{ request: UpdateUserRequest }>(),
+    'Update User Success': props<{ currentUser: CurrentUserInterface }>(),
+    'Update User Failure': props<{ errors: BackendErrorsInterface }>(),
+
+    Logout: emptyProps(),
   },
 });

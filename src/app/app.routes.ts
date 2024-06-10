@@ -11,8 +11,9 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('./auth/auth.routes').then((m) => m.loginRoutes),
   },
   {
-    path: '',
-    loadChildren: () => import('./home/home.routes').then((m) => m.homeRoutes),
+    path: 'settings',
+    loadChildren: () =>
+      import('./auth/auth.routes').then((m) => m.settingsRoutes),
   },
   {
     path: 'editor',
@@ -25,5 +26,9 @@ export const appRoutes: Route[] = [
     path: 'article/:slug',
     loadChildren: () =>
       import('./article/article.routes').then((m) => m.articleRoutes),
+  },
+  {
+    path: '',
+    loadChildren: () => import('./home/home.routes').then((m) => m.homeRoutes),
   },
 ];

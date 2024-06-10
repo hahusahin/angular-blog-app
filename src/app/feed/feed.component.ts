@@ -16,6 +16,8 @@ import { PaginationComponent } from '../shared/components/pagination/pagination.
 import { environment } from '../../environments/environment';
 import queryString from 'query-string';
 import { ActiveTabService } from '../shared/services/active-tab.service';
+import { ArticleEntity } from './types';
+import { FavoriteButtonComponent } from './favorite-button/favorite-button.component';
 
 @Component({
   selector: 'mc-feed',
@@ -25,6 +27,7 @@ import { ActiveTabService } from '../shared/services/active-tab.service';
     RouterLink,
     StatusWrapperComponent,
     PaginationComponent,
+    FavoriteButtonComponent,
   ],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.css',

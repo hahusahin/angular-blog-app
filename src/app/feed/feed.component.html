@@ -10,9 +10,11 @@
                     <a [routerLink]="['/profiles/', article.author.username]" class="author">{{article.author.username}}</a>
                     <span class="date">{{article.createdAt | date: 'mediumDate'}}</span>
                   </div>
-                  <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                    <i class="ion-heart"></i> {{article.favoritesCount}}
-                  </button>
+                  <mc-favorite-button 
+                    [isFavorited]="article.favorited" 
+                    [favoritesCount]="article.favoritesCount" 
+                    [slug]="article.slug">
+                  </mc-favorite-button>
                 </div>
                 <a [routerLink]="['/article', article.slug]" class="preview-link">
                   <h1>{{article.title}}</h1>

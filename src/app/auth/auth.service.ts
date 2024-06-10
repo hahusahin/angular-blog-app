@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import {
   AuthResponseInterface,
   LoginRequestInterface,
   RegisterRequestInterface,
-} from '../types';
-import { CurrentUserInterface } from '../../shared/types';
+  UpdateUserRequest,
+} from './types';
+import { CurrentUserInterface } from '../shared/types';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -33,6 +34,13 @@ export class AuthService {
     const url = environment.API_BASE_URL + '/user';
     return this.http
       .get<AuthResponseInterface>(url)
+      .pipe(map((res) => res.user));
+  }
+
+  updateUser(reqBody: UpdateUserRequest) {
+    const url = environment.API_BASE_URL + '/user';
+    return this.http
+      .put<AuthResponseInterface>(url, reqBody)
       .pipe(map((res) => res.user));
   }
 }
