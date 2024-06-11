@@ -24,7 +24,6 @@ export class ModifyArticleComponent implements OnInit, OnDestroy {
     body: ['', Validators.required],
     tagList: [''],
   });
-
   data$ = combineLatest({
     isSubmitting: this.store.select(selectIsSubmitting),
     backendErrors: this.store.select(selectValidationErrors),
@@ -34,6 +33,8 @@ export class ModifyArticleComponent implements OnInit, OnDestroy {
   slug: string | undefined;
 
   onSubmit() {
+    if (this.form.invalid) return;
+
     const formValues = this.form.getRawValue();
     if (this.slug) {
       this.store.dispatch(

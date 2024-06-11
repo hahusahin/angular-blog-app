@@ -1,37 +1,40 @@
 <div class="editor-page" *ngIf="data$ | async as data">
-    <div class="container page">
-      <div class="row">
-        <div class="col-md-10 offset-md-1 col-xs-12">
-            <mc-backend-errors 
-                *ngIf="data.backendErrors" 
-                [backendErrors]="data.backendErrors">
-            </mc-backend-errors>
-  
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <fieldset>
-              <fieldset class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Article Title" formControlName="title"/>
-              </fieldset>
-              <fieldset class="form-group">
-                <input type="text" class="form-control" placeholder="What's this article about?" formControlName="description"/>
-              </fieldset>
-              <fieldset class="form-group">
-                <textarea
-                  class="form-control"
-                  rows="8"
-                  placeholder="Write your article (in markdown)"
-                  formControlName="body"
-                ></textarea>
-              </fieldset>
-              <fieldset class="form-group">
-                <input type="text" class="form-control" placeholder="Enter tags" formControlName="tagList"/>
-              </fieldset>
-              <button class="btn btn-lg pull-xs-right btn-primary" type="submit" [disabled]="data.isSubmitting">
-                {{slug ? 'Edit Article' : 'Publish Article'}}
-              </button>
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+        <mc-backend-errors *ngIf="data.backendErrors" [backendErrors]="data.backendErrors">
+        </mc-backend-errors>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <fieldset>
+            <fieldset class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Article Title"
+                formControlName="title" />
+              <span class="text-danger" *ngIf="!form.get('title')?.valid && form.get('title')?.touched">Title is
+                required</span>
             </fieldset>
-          </form>
-        </div>
+            <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="What's this article about?"
+                formControlName="description" />
+              <span class="text-danger"
+                *ngIf="!form.get('description')?.valid && form.get('description')?.touched">Description is
+                required</span>
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea class="form-control" rows="8" placeholder="Write your article (in markdown)"
+                formControlName="body"></textarea>
+              <span class="text-danger" *ngIf="!form.get('body')?.valid && form.get('body')?.touched">Article body is
+                required</span>
+            </fieldset>
+            <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="Enter tags" formControlName="tagList" />
+            </fieldset>
+            <button class="btn btn-lg pull-xs-right btn-primary" type="submit" [disabled]="data.isSubmitting">
+              {{slug ? 'Edit Article' : 'Publish Article'}}
+            </button>
+          </fieldset>
+        </form>
       </div>
     </div>
   </div>
+</div>

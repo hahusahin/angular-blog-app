@@ -27,6 +27,7 @@
               <span class="text-danger" *ngIf="!form.get('password')?.valid && form.get('password')?.touched">Password
                 is required</span>
             </fieldset>
+            <p class="text-info text-xs-center">Tip: You can register with a dummy email and password</p>
             <button type="submit" class="btn btn-lg btn-primary pull-xs-right" [disabled]="data.isSubmitting">
               Sign Up
             </button>
