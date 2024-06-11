@@ -15,6 +15,7 @@ import { BackendErrors } from '../../../shared/components/backendErrors/backend-
   standalone: true,
   selector: 'mc-login',
   templateUrl: './login.component.html',
+  styleUrl: './login.component.css',
   imports: [ReactiveFormsModule, RouterLink, CommonModule, BackendErrors],
 })
 export class LoginComponent {
@@ -31,6 +32,8 @@ export class LoginComponent {
   });
 
   onSubmit() {
+    if (this.form.invalid) return;
+
     const request = { user: this.form.getRawValue() };
     this.store.dispatch(authActions.login({ request }));
   }

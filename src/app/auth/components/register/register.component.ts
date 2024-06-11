@@ -15,6 +15,7 @@ import { BackendErrors } from '../../../shared/components/backendErrors/backend-
   standalone: true,
   selector: 'mc-register',
   templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
   imports: [ReactiveFormsModule, RouterLink, CommonModule, BackendErrors],
 })
 export class RegisterComponent {
@@ -32,6 +33,8 @@ export class RegisterComponent {
   });
 
   onSubmit() {
+    if (this.form.invalid) return;
+
     const request = { user: this.form.getRawValue() };
     this.store.dispatch(authActions.register({ request }));
   }

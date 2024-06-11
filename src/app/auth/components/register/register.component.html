@@ -7,34 +7,25 @@
           <p class="text-xs-center">
             <a routerLink="/login">Have an account?</a>
           </p>
-          <mc-backend-errors 
-            *ngIf="data.backendErrors" 
-            [backendErrors]="data.backendErrors">
+          <mc-backend-errors *ngIf="data.backendErrors" [backendErrors]="data.backendErrors">
           </mc-backend-errors>
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <fieldset class="form-group">
-              <input
-                type="text"
-                class="form-control form-control-lg"
-                placeholder="Username"
-                formControlName="username"
-              />
+              <input type="text" class="form-control form-control-lg" placeholder="Username"
+                formControlName="username" />
+              <span class="text-danger" *ngIf="!form.get('username')?.valid && form.get('username')?.touched">Username
+                is required</span>
             </fieldset>
             <fieldset class="form-group">
-              <input
-                type="text"
-                class="form-control form-control-lg"
-                placeholder="Email"
-                formControlName="email"
-              />
+              <input type="text" class="form-control form-control-lg" placeholder="Email" formControlName="email" />
+              <span class="text-danger" *ngIf="!form.get('email')?.valid && form.get('email')?.touched">Enter a valid
+                email</span>
             </fieldset>
             <fieldset class="form-group">
-              <input
-                type="password"
-                class="form-control form-control-lg"
-                placeholder="Password"
-                formControlName="password"
-              />
+              <input type="password" class="form-control form-control-lg" placeholder="Password"
+                formControlName="password" />
+              <span class="text-danger" *ngIf="!form.get('password')?.valid && form.get('password')?.touched">Password
+                is required</span>
             </fieldset>
             <button type="submit" class="btn btn-lg btn-primary pull-xs-right" [disabled]="data.isSubmitting">
               Sign Up
@@ -45,4 +36,3 @@
     </div>
   </div>
 </ng-container>
-  
