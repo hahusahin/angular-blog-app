@@ -14,8 +14,9 @@ export class BackendErrors implements OnInit {
   errorMessages: string[] = [];
 
   ngOnInit(): void {
-    this.errorMessages = Object.keys(this.backendErrors).map(
-      (name: string) => `${name}: ${this.backendErrors[name].join(' ')}`
-    );
+    this.errorMessages = Object.keys(this.backendErrors).map((name: string) => {
+      const error = this.backendErrors[name];
+      return `${name}: ${Array.isArray(error) ? error.join(' ') : error}`;
+    });
   }
 }

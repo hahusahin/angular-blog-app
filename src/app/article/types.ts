@@ -1,4 +1,4 @@
-import { Profile } from '../feed/types';
+import { ProfileInterface } from '../profile/profile.types';
 
 export interface ArticleEntity {
   slug: string;
@@ -10,7 +10,7 @@ export interface ArticleEntity {
   updatedAt: string;
   favorited: boolean;
   favoritesCount: number;
-  author: Profile;
+  author: ProfileInterface;
 }
 
 export interface ArticleResponse {

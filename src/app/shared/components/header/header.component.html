@@ -8,13 +8,13 @@
                     <li class="nav-item"><a class="nav-link" routerLink="/editor"><i class="ion-compose"></i>&nbsp; New
                             Article</a></li>
                     <li class="nav-item"><a class="nav-link" routerLink="/settings"><i class="ion-gear-a"></i>&nbsp;
-                            Profile</a></li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/profile', data.currentUser.username]">
-                            <img [src]="data.currentUser.image" alt="profile" class="user-pic">
+                            Settings</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/profiles', data.currentUser.id]">
+                            <img [src]="data.currentUser.imageUrl" alt="profile" class="user-pic">
                             &nbsp; {{data.currentUser.username}}
                         </a>
-                    </li> -->
+                    </li>
                 </ng-container>
                 <ng-container *ngIf="data.currentUser === null">
                     <li class="nav-item"><a class="nav-link" routerLink="/login">Sign In</a></li>

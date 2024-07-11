@@ -32,6 +32,6 @@ export interface UpdateUserRequest {
     username?: string;
     password?: string;
     bio?: string;
-    image?: string;
+    imageUrl?: string;
   };
 }

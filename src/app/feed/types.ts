@@ -1,9 +1,4 @@
-export interface Profile {
-  username: string;
-  bio: string | null;
-  image: string;
-  following: boolean;
-}
+import { ProfileInterface } from '../profile/profile.types';
 
 export interface ArticleEntity {
   slug: string;
@@ -15,7 +10,7 @@ export interface ArticleEntity {
   updatedAt: string;
   favorited: boolean;
   favoritesCount: number;
-  author: Profile;
+  author: ProfileInterface;
 }
 
 export interface FeedResponse {

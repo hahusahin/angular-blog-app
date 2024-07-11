@@ -43,7 +43,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.form.patchValue({
           bio: user.bio ?? '',
           email: user.email,
-          imageUrl: user.image ?? '',
+          imageUrl: user.imageUrl ?? '',
           username: user.username,
         })
       );

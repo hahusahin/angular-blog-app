@@ -3,11 +3,12 @@ export interface BackendErrorsInterface {
 }
 
 export interface CurrentUserInterface {
+  id: number;
   email: string;
   username: string;
   bio: string | null;
   token: string;
-  image: string | null;
+  imageUrl: string | null;
 }
 
 export type FeedTabs = 'global' | 'feed' | 'popularTag';

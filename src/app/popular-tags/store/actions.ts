@@ -4,7 +4,7 @@ export const popularTagsActions = createActionGroup({
   source: 'Popular Tags',
   events: {
     'Get Tags': emptyProps(),
-    'Get Tags Success': props<{ tags: string[] }>(),
+    'Get Tags Success': props<{ tags: { id: number; name: string }[] }>(),
     'Get Tags Failure': emptyProps(),
   },
 });

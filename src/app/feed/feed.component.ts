@@ -54,27 +54,45 @@ export class FeedComponent implements OnInit {
   tag: string | null = null;
 
   fetchFeed(urlSegment: UrlSegment[]) {
-    let url = `${this.apiUrl}/articles`;
-    this.activeTabService.setActiveTab('global');
+    console.log(this.apiUrl);
 
-    if (urlSegment[0] && urlSegment[0].path === 'feed') {
-      url = `${this.apiUrl}/articles/feed`;
-      this.activeTabService.setActiveTab('feed');
+    if (this.apiUrl.includes('articles')) {
+      const queryParams = queryString.stringify({
+        ...(this.currentPage > 1 && {
+          offset: this.limit * (this.currentPage - 1),
+          limit: this.limit,
+        }),
+      });
+      this.store.dispatch(
+        feedActions.getFeed({
+          url: queryParams ? `${this.apiUrl}?${queryParams}` : this.apiUrl,
+        })
+      );
+    } else {
+      let url = `${this.apiUrl}/articles`;
+      this.activeTabService.setActiveTab('global');
+
+      if (urlSegment[0] && urlSegment[0].path === 'feed') {
+        url = `${this.apiUrl}/articles/feed`;
+        this.activeTabService.setActiveTab('feed');
+      }
+
+      const queryParams = queryString.stringify({
+        ...(this.currentPage > 1 && {
+          offset: this.limit * (this.currentPage - 1),
+          limit: this.limit,
+        }),
+        ...(this.tag && { tag: this.tag }),
+      });
+
+      if (this.tag) this.activeTabService.setActiveTab('popularTag');
+
+      this.store.dispatch(
+        feedActions.getFeed({
+          url: queryParams ? `${url}?${queryParams}` : url,
+        })
+      );
     }
-
-    const queryParams = queryString.stringify({
-      ...(this.currentPage > 1 && {
-        offset: this.limit * (this.currentPage - 1),
-        limit: this.limit,
-      }),
-      ...(this.tag && { tag: this.tag }),
-    });
-
-    if (this.tag) this.activeTabService.setActiveTab('popularTag');
-
-    this.store.dispatch(
-      feedActions.getFeed({ url: queryParams ? `${url}?${queryParams}` : url })
-    );
   }
 
   ngOnInit(): void {

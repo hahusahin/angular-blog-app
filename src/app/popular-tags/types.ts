@@ -1,9 +1,9 @@
 export interface PopularTagsResponse {
-  tags: string[];
+  tags: { id: number; name: string }[];
 }
 
 export interface PopularTagsState {
   isLoading: boolean;
   error: string | null;
-  data: string[];
+  data: { id: number; name: string }[];
 }
