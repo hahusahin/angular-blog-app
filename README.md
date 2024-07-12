@@ -1,6 +1,6 @@
 # Blog App devloped using Angular Framework
 
-- Live demo: https://angular-blog-app-fl7p.onrender.com
+- Click to see: [My Blog App](https://angular-blog-app-fl7p.onrender.com)
 - This is a blog app like Medium that I developed using Angular framework.
 
 ## Features
@@ -16,4 +16,5 @@
 - Standalone Components
 <br />
 <br />
-- For the backend: Special thanks to the https://realworld-docs.netlify.app/
+- I've developed it's backend with Nest.js.
+- Feel free to look at it in here: https://github.com/hahusahin/nestjs-blog-app
